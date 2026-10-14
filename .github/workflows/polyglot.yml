@@ -111,6 +111,7 @@ jobs:
       - name: Ruby Bundler validation
         working-directory: ecosystems/ruby
         run: |
+          gem install bundler -v 2.5.23 --no-document
           bundle install --jobs 4 --retry 3
           bundle exec rake test
 
