@@ -1,0 +1,18 @@
+name: Managed CI pilot
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  shared:
+    name: Managed / Node CI
+    uses: Nisan-Sinai/github-workflows/.github/workflows/node-ci.yml@b33c18c6c5db1fc49a8c06e435ce2d342f2d04a0
+    with:
+      package-manager: npm
+      install-command: npm ci
+      lint-command: npm run lint
+      typecheck-command: npm run typecheck
+      test-command: npm test
+      build-command: npm run build
