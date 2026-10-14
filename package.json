@@ -1,0 +1,14 @@
+{
+  "name": "github-workflows-managed-test",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "node --check test.js",
+    "typecheck": "node --check test.js",
+    "test": "node test.js",
+    "build": "node --check test.js"
+  },
+  "dependencies": {
+    "lodash": "4.17.20"
+  }
+}
