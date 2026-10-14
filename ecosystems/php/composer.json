@@ -1,0 +1,10 @@
+{
+  "name": "nisan-sinai/managed-test-php",
+  "description": "Disposable Composer fixture for central dependency management",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.3",
+    "psr/log": "3.0.0"
+  }
+}

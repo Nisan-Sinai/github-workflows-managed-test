@@ -1,0 +1,21 @@
+plugins {
+    java
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+tasks.test {
+    useJUnitPlatform()
+}

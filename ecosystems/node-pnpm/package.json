@@ -1,0 +1,12 @@
+{
+  "name": "managed-test-pnpm",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.18.0",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "picocolors": "1.1.1"
+  }
+}

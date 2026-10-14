@@ -1,0 +1,6 @@
+apiVersion: v2
+name: managed-test
+description: Disposable Helm fixture for central dependency management
+type: application
+version: 1.0.0
+appVersion: "1.27.4"
