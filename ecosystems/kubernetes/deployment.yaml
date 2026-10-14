@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: managed-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: managed-test
+  template:
+    metadata:
+      labels:
+        app: managed-test
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.27.4
+          ports:
+            - containerPort: 80

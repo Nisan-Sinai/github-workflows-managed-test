@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-managed-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: managed-test
+  template:
+    metadata:
+      labels:
+        app: managed-test
+    spec:
+      containers:
+        - name: web
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 80

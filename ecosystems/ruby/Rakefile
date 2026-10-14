@@ -1,0 +1,6 @@
+task :test do
+  raise "unexpected Ruby result" unless 6 * 7 == 42
+  puts "central-manager-ok"
+end
+
+task default: :test

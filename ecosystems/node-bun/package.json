@@ -1,0 +1,11 @@
+{
+  "name": "managed-test-bun",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "bun test.js"
+  },
+  "dependencies": {
+    "picocolors": "1.1.1"
+  }
+}
