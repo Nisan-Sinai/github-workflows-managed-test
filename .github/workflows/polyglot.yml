@@ -8,7 +8,7 @@ permissions:
 jobs:
   pnpm:
     name: Ecosystems / pnpm
-    uses: Nisan-Sinai/github-workflows/.github/workflows/node-ci.yml@ab4014672f6a27b5bd78293320a5266a6ecdb4e1 # main
+    uses: Nisan-Sinai/github-workflows/.github/workflows/node-ci.yml@1f30dffd2898920d1e57d22547261557f8316171 # main
     with:
       package-manager: pnpm
       working-directory: ecosystems/node-pnpm
@@ -18,7 +18,7 @@ jobs:
 
   yarn:
     name: Ecosystems / Yarn
-    uses: Nisan-Sinai/github-workflows/.github/workflows/node-ci.yml@ab4014672f6a27b5bd78293320a5266a6ecdb4e1 # main
+    uses: Nisan-Sinai/github-workflows/.github/workflows/node-ci.yml@1f30dffd2898920d1e57d22547261557f8316171 # main
     with:
       package-manager: yarn
       working-directory: ecosystems/node-yarn
@@ -28,7 +28,7 @@ jobs:
 
   bun:
     name: Ecosystems / Bun
-    uses: Nisan-Sinai/github-workflows/.github/workflows/node-ci.yml@ab4014672f6a27b5bd78293320a5266a6ecdb4e1 # main
+    uses: Nisan-Sinai/github-workflows/.github/workflows/node-ci.yml@1f30dffd2898920d1e57d22547261557f8316171 # main
     with:
       package-manager: bun
       working-directory: ecosystems/node-bun
@@ -38,7 +38,7 @@ jobs:
 
   python-pep621:
     name: Ecosystems / Python PEP 621
-    uses: Nisan-Sinai/github-workflows/.github/workflows/python-ci.yml@ab4014672f6a27b5bd78293320a5266a6ecdb4e1 # main
+    uses: Nisan-Sinai/github-workflows/.github/workflows/python-ci.yml@1f30dffd2898920d1e57d22547261557f8316171 # main
     with:
       python-version: '3.12'
       working-directory: ecosystems/python-pep621
@@ -73,9 +73,12 @@ jobs:
       - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
         with:
           go-version: '1.24.x'
+          cache: false
       - name: Test
         working-directory: ecosystems/go
-        run: go test ./...
+        run: |
+          go mod download
+          go test ./...
 
   rust:
     name: Ecosystems / Rust Cargo
@@ -136,4 +139,8 @@ jobs:
       - name: Helm validation
         run: helm lint ecosystems/helm/managed-test
       - name: Kubernetes client-side validation
-        run: kubectl create --dry-run=client --validate=false -f ecosystems/kubernetes/deployment.yaml
+        run: |
+          docker run --rm \
+            -v "$PWD:/work:ro" \
+            ghcr.io/yannh/kubeconform@sha256:85dbef6b4b312b99133decc9c6fc9495e9fc5f92293d4ff3b7e1b30f5611823c \
+            -strict -summary /work/ecosystems/kubernetes/deployment.yaml
