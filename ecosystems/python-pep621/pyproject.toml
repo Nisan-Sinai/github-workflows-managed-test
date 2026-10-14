@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "managed-test-pep621"
 version = "1.0.0"
 requires-python = ">=3.12"
-dependencies = ["packaging==24.2"]
+dependencies = ["packaging==26.3"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
