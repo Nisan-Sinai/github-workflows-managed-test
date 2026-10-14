@@ -6,9 +6,9 @@ on:
 permissions:
   contents: read
 jobs:
-  shared:
+  node:
     name: Managed / Node CI
-    uses: Nisan-Sinai/github-workflows/.github/workflows/node-ci.yml@b33c18c6c5db1fc49a8c06e435ce2d342f2d04a0
+    uses: Nisan-Sinai/github-workflows/.github/workflows/node-ci.yml@5ec3505f9eb3e069771bc132ef3655ad76de1900 # main
     with:
       package-manager: npm
       install-command: npm ci
@@ -16,3 +16,20 @@ jobs:
       typecheck-command: npm run typecheck
       test-command: npm test
       build-command: npm run build
+  python:
+    name: Managed / Python CI
+    uses: Nisan-Sinai/github-workflows/.github/workflows/python-ci.yml@5ec3505f9eb3e069771bc132ef3655ad76de1900 # main
+    with:
+      python-version: '3.12'
+      install-command: python -m pip install -r requirements.txt
+      lint-command: python -m compileall -q python_test.py
+      typecheck-command: ''
+      test-command: python python_test.py
+      build-command: ''
+  dotnet:
+    name: Managed / .NET CI
+    uses: Nisan-Sinai/github-workflows/.github/workflows/dotnet-ci.yml@5ec3505f9eb3e069771bc132ef3655ad76de1900 # main
+    with:
+      project: dotnet/ManagedTest/ManagedTest.csproj
+      dotnet-version: '8.0.x'
+      run-tests: false
