@@ -113,6 +113,7 @@ jobs:
         run: |
           gem install --user-install bundler -v 2.5.23 --no-document
           export PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+          bundle config set --local path vendor/bundle
           bundle install --jobs 4 --retry 3
           bundle exec rake test
 
